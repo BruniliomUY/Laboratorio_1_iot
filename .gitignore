@@ -1,35 +1,78 @@
-# Ignorar todo por defecto
-*
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
 
-# Permitir directorios (necesario para que Git los recorra)
-!*/
+# Directory metadata
+.directory
 
-# --- Archivos raíz ---
-!CMakeLists.txt
-!sdkconfig
+# Temporary files
+*~
+*.swp
+*.swo
+*.bak
+*.tmp
 
-# --- main ---
-!main/
-!main/CMakeLists.txt
-!main/main.c
+# Log files
+*.log
 
-# --- components ---
-!components/
+# Build artifacts and directories
+**/build/
+build/
+*.o
+*.a
+*.out
+*.exe # For any host-side utilities compiled on Windows
 
-# led_strip (todo incluido)
-!components/led_strip/
-!components/led_strip/**
+# ESP-IDF specific build outputs
+*.bin
+*.elf
+*.map
+flasher_args.json # Generated in build directory
+sdkconfig.old
+sdkconfig
 
-# rgb_led
-!components/rgb_led/
-!components/rgb_led/CMakeLists.txt
-!components/rgb_led/rgb_led.c
-!components/rgb_led/include/
-!components/rgb_led/include/rgb_led.h
+# ESP-IDF dependencies
+# For older versions or manual component management
+/components/.idf/
+**/components/.idf/
+# For modern ESP-IDF component manager
+managed_components/
+# If ESP-IDF tools are installed/referenced locally to the project
+.espressif/
 
-# delay
-!components/delay/
-!components/delay/CMakeLists.txt
-!components/delay/delay.c
-!components/delay/include/
-!components/delay/include/delay.h
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+
+# Python environment files
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.egg-info/
+dist/
+
+# Virtual environment folders
+venv/
+.venv/
+env/
+
+# Language Servers
+.clangd/
+.ccls-cache/
+compile_commands.json
+
+# Windows specific
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# User-specific configuration files
+*.user
+*.workspace # General workspace files, can be from various tools
+*.suo       # Visual Studio Solution User Options
+*.sln.docstates # Visual Studio
