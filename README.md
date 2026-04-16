@@ -1,1 +1,1 @@
-# Laboratorio-1---Introducci-n-a-la-placa-de-desarrollo-y-a-VSCode-ESP-IDF
+# Laboratorio_1
