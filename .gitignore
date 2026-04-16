@@ -1,55 +1,35 @@
-# Prerequisites
-*.d
+# Ignorar todo por defecto
+*
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+# Permitir directorios (necesario para que Git los recorra)
+!*/
 
-# Linker output
-*.ilk
-*.map
-*.exp
+# --- Archivos raíz ---
+!CMakeLists.txt
+!sdkconfig
 
-# Precompiled Headers
-*.gch
-*.pch
+# --- main ---
+!main/
+!main/CMakeLists.txt
+!main/main.c
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
+# --- components ---
+!components/
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
+# led_strip (todo incluido)
+!components/led_strip/
+!components/led_strip/**
 
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
+# rgb_led
+!components/rgb_led/
+!components/rgb_led/CMakeLists.txt
+!components/rgb_led/rgb_led.c
+!components/rgb_led/include/
+!components/rgb_led/include/rgb_led.h
 
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
-
-# debug information files
-*.dwo
+# delay
+!components/delay/
+!components/delay/CMakeLists.txt
+!components/delay/delay.c
+!components/delay/include/
+!components/delay/include/delay.h
