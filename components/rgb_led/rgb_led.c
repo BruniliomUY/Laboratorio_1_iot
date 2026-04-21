@@ -1,26 +1,39 @@
-#include "rgb_led.h"
-#include "esp_log.h"
+#include "rgb_led.h"      
+#include "led_strip.h"    
+#include "esp_err.h" // lo incluyo para poder verificar errores,de aca saco que ESP_Ok es que salio todo bien https://docs.espressif.com/projects/esp-idf/en/latest/esp32/api-reference/system/esp_err.html
+#include <stdint.h>       
 
-static const char *TAG = "RGB_LIB";
-led_strip_t *p_strip = NULL;
+#define RGB_TIMEOUT_MS 50 
 
-// Aquí incluyes la función de inicialización que ya tienes (led_rgb_init)
-// pero adaptada para guardar el puntero en p_strip.
-esp_err_t rgb_led_init(void) {
-    // ... (aquí va toda la lógica de rmt_tx_channel_config_t y rmt_new_bytes_encoder)
-    // Asegúrate de asignar el resultado a p_strip
-    return ESP_OK; 
-}
+static led_strip_t *led = NULL; // puntero al LED, arranca en null porque todavia no esta inicializado
 
-void rgb_led_set_color(uint32_t red, uint32_t green, uint32_t blue) {
-    if (p_strip) {
-        p_strip->set_pixel(p_strip, 0, red, green, blue);
-        p_strip->refresh(p_strip, 100);
+void rgb_led_init(void)
+{
+    if (led != NULL) {    // si ya estaba inicializado no lo vuelvo a inicializar
+        return;           
+    }
+
+    if (led_rgb_init(&led) != ESP_OK) { // la funcion pide **strip entonces le paso &led (direccion del puntero)
+        led = NULL;      // si falla algo dejo NULL para mostrar que no hay led valido inicializado
     }
 }
 
-void rgb_led_clear(void) {
-    if (p_strip) {
-        p_strip->clear(p_strip, 100);
+void rgb_led_set_color(uint8_t red, uint8_t green, uint8_t blue)
+{
+    if (led == NULL) {    // verifico que el led este inicializado
+        return;           
     }
+
+    led->set_pixel(led, 0, red, green, blue); // uso la funcion que esta dentro de la struct. El 0 porque hay un solo led,su indice es 0
+
+    led->refresh(led, RGB_TIMEOUT_MS); // pasa los datos al LED
+}
+
+void rgb_led_off(void)
+{
+    if (led == NULL) {    
+        return;           
+    }
+
+    led->clear(led, RGB_TIMEOUT_MS); // apaga el LED (lo pone en 0)
 }

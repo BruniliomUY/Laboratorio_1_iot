@@ -1,8 +1,9 @@
 set(component_srcs "src/led_strip_rmt_ws2812.c")
 
 idf_component_register(
-    SRCS "src/led_strip_rmt_ws2812.c"
+    SRCS "${component_srcs}"
     INCLUDE_DIRS "include"
-    REQUIRES esp_driver_rmt driver
+    PRIV_INCLUDE_DIRS ""
+    PRIV_REQUIRES "esp_driver_rmt"
+    REQUIRES ""
 )
-
