@@ -33,6 +33,7 @@ typedef void *led_strip_dev_t;
 /**
  * @brief LED Strip configuration
  *
+ * Se deja igual que la librería vieja.
  * En esta adaptación para IDF 6, "dev" guarda un rmt_channel_handle_t.
  */
 typedef struct {
@@ -41,7 +42,7 @@ typedef struct {
 } led_strip_config_t;
 
 /**
- * @brief LED Strip structure
+ * @brief Declare of LED Strip Type
  */
 struct led_strip_s {
     esp_err_t (*set_pixel)(led_strip_t *strip, uint32_t index, uint32_t red, uint32_t green, uint32_t blue);
@@ -54,6 +55,8 @@ led_strip_t *led_strip_new_rmt_ws2812(const led_strip_config_t *config);
 
 /**
  * @brief Inicializa el LED RGB embebido
+ *
+ */
 esp_err_t led_rgb_init(led_strip_t **strip);
 
 #ifdef __cplusplus
