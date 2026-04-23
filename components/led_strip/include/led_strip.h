@@ -33,7 +33,6 @@ typedef void *led_strip_dev_t;
 /**
  * @brief LED Strip configuration
  *
- * Se deja igual que la librería vieja.
  * En esta adaptación para IDF 6, "dev" guarda un rmt_channel_handle_t.
  */
 typedef struct {
@@ -42,7 +41,7 @@ typedef struct {
 } led_strip_config_t;
 
 /**
- * @brief Declare of LED Strip Type
+ * @brief LED Strip structure
  */
 struct led_strip_s {
     esp_err_t (*set_pixel)(led_strip_t *strip, uint32_t index, uint32_t red, uint32_t green, uint32_t blue);
