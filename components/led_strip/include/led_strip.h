@@ -55,9 +55,6 @@ led_strip_t *led_strip_new_rmt_ws2812(const led_strip_config_t *config);
 
 /**
  * @brief Inicializa el LED RGB embebido
- *
- * Se mantiene exactamente la misma firma que te interesa.
- */
 esp_err_t led_rgb_init(led_strip_t **strip);
 
 #ifdef __cplusplus
